@@ -1,4 +1,4 @@
-// Operation Epic Fury Dashboard - Main Application (FIXED VERSION)
+// Operation Epic Fury Dashboard - Main Application (MOBILE-FIXED VERSION)
 
 let dashboardData = null;
 
@@ -17,6 +17,7 @@ async function initializeApp() {
         initializeTimeline();
         initializeScenarioChart();
         initializeRegionalMap();
+        initializeNetworkAnalysis();
         initializeActors();
         updateStatusCards();
         startLiveUpdates();
@@ -299,7 +300,7 @@ function renderTimeline(filter) {
     `).join('');
 }
 
-// ===== SCENARIO CHART =====
+// ===== SCENARIO CHART (MOBILE-RESPONSIVE) =====
 function initializeScenarioChart() {
     const ctx = document.getElementById('scenarioChart');
     if (!ctx) {
@@ -318,6 +319,9 @@ function initializeScenarioChart() {
     }
     
     const scenarios = dashboardData.scenarios;
+    
+    // Detect mobile screen
+    const isMobile = window.innerWidth < 768;
     
     new Chart(ctx, {
         type: 'bar',
@@ -358,9 +362,21 @@ function initializeScenarioChart() {
                     color: '#f0f4f8',
                     font: {
                         weight: 'bold',
-                        family: 'JetBrains Mono'
+                        family: 'JetBrains Mono',
+                        size: isMobile ? 10 : 12
                     },
                     formatter: (value) => value + '%'
+                },
+                tooltip: {
+                    callbacks: {
+                        label: (context) => {
+                            const scenario = scenarios[context.dataIndex];
+                            return [
+                                `Probability: ${scenario.probability}%`,
+                                `Confidence: ${scenario.confidence}`
+                            ];
+                        }
+                    }
                 }
             },
             scales: {
@@ -373,7 +389,8 @@ function initializeScenarioChart() {
                     ticks: {
                         color: '#94a3b8',
                         font: {
-                            family: 'JetBrains Mono'
+                            family: 'JetBrains Mono',
+                            size: isMobile ? 10 : 12
                         }
                     }
                 },
@@ -384,15 +401,36 @@ function initializeScenarioChart() {
                     ticks: {
                         color: '#f0f4f8',
                         font: {
-                            size: 12
+                            size: isMobile ? 10 : 12
+                        },
+                        // Truncate long labels on mobile
+                        callback: function(value, index) {
+                            const label = this.getLabelForValue(value);
+                            if (isMobile && label.length > 15) {
+                                return label.substring(0, 12) + '...';
+                            }
+                            return label;
                         }
                     }
                 }
+            },
+            // Improve mobile interaction
+            interaction: {
+                intersect: false,
+                mode: 'index'
             }
         }
     });
     
-    console.log('Scenario chart initialized');
+    // Redraw chart on resize for responsiveness
+    window.addEventListener('resize', () => {
+        const newIsMobile = window.innerWidth < 768;
+        if (newIsMobile !== isMobile) {
+            location.reload(); // Simple approach - reload on breakpoint change
+        }
+    });
+    
+    console.log('Scenario chart initialized (mobile-responsive)');
 }
 
 // ===== REGIONAL MAP =====
@@ -405,7 +443,7 @@ function initializeRegionalMap() {
     
     // Simple SVG representation
     container.innerHTML = `
-        <svg viewBox="0 0 800 500" style="width: 100%; height: 400px;">
+        <svg viewBox="0 0 800 500" style="width: 100%; height: 400px; max-width: 100%;">
             <!-- Background -->
             <rect width="800" height="500" fill="#111827"/>
             
@@ -461,7 +499,136 @@ function initializeRegionalMap() {
     console.log('Regional map initialized');
 }
 
-// ===== ACTORS =====
+// ===== NETWORK ANALYSIS (NEW) =====
+function initializeNetworkAnalysis() {
+    const container = document.getElementById('network-viz');
+    const tabs = document.querySelectorAll('.network-tab');
+    
+    if (!container) {
+        console.warn('Network visualization container not found');
+        return;
+    }
+    
+    // Show default (power structure)
+    showNetwork('power');
+    
+    // Tab click handlers
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            const networkType = tab.getAttribute('data-network');
+            showNetwork(networkType);
+        });
+    });
+    
+    console.log('Network analysis initialized');
+}
+
+function showNetwork(type) {
+    const container = document.getElementById('network-viz');
+    if (!container) return;
+    
+    const visualizations = {
+        power: `
+            <div class="network-graph" style="padding: 40px; text-align: center;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 24px; color: #3b82f6;">Iranian Power Structure</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;">
+                    <div class="network-node" style="background: rgba(239, 68, 68, 0.1); border: 2px solid #ef4444; padding: 20px; border-radius: 12px;">
+                        <h4 style="color: #ef4444; margin-bottom: 12px;">Supreme Leader</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Status: CLAIMED DEAD (0.65 confidence)</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Vacuum creates succession crisis</p>
+                    </div>
+                    <div class="network-node" style="background: rgba(245, 158, 11, 0.1); border: 2px solid #f59e0b; padding: 20px; border-radius: 12px;">
+                        <h4 style="color: #f59e0b; margin-bottom: 12px;">IRGC</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Status: INTACT but leaderless</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Controls proxy networks</p>
+                    </div>
+                    <div class="network-node" style="background: rgba(59, 130, 246, 0.1); border: 2px solid #3b82f6; padding: 20px; border-radius: 12px;">
+                        <h4 style="color: #3b82f6; margin-bottom: 12px;">Regular Military</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Status: DEGRADED by cyber</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">May declare neutrality</p>
+                    </div>
+                    <div class="network-node" style="background: rgba(139, 92, 246, 0.1); border: 2px solid #8b5cf6; padding: 20px; border-radius: 12px;">
+                        <h4 style="color: #8b5cf6; margin-bottom: 12px;">Religious Establishment</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Status: UNCERTAIN</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">May back different factions</p>
+                    </div>
+                </div>
+            </div>
+        `,
+        proxies: `
+            <div class="network-graph" style="padding: 40px; text-align: center;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 24px; color: #3b82f6;">Proxy Network Status</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+                    <div class="network-node" style="background: rgba(34, 197, 94, 0.1); border: 2px solid #22c55e; padding: 20px; border-radius: 12px;">
+                        <h4 style="color: #22c55e; margin-bottom: 12px;">Hezbollah</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Status: SILENT</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">100K+ rockets ready</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Cyber disruption likely</p>
+                    </div>
+                    <div class="network-node" style="background: rgba(245, 158, 11, 0.1); border: 2px solid #f59e0b; padding: 20px; border-radius: 12px;">
+                        <h4 style="color: #f59e0b; margin-bottom: 12px;">Houthis</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Status: LIMITED</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Red Sea attacks continue</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Reduced coordination</p>
+                    </div>
+                    <div class="network-node" style="background: rgba(34, 197, 94, 0.1); border: 2px solid #22c55e; padding: 20px; border-radius: 12px;">
+                        <h4 style="color: #22c55e; margin-bottom: 12px;">PMF (Iraq)</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Status: SILENT</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">US bases in range</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Awaiting orders</p>
+                    </div>
+                    <div class="network-node" style="background: rgba(59, 130, 246, 0.1); border: 2px solid #3b82f6; padding: 20px; border-radius: 12px;">
+                        <h4 style="color: #3b82f6; margin-bottom: 12px;">Syrian Militias</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Status: STANDBY</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Minimal capability</p>
+                    </div>
+                </div>
+                <p style="margin-top: 30px; color: #f59e0b; font-weight: 600;">
+                    ⚠️ Proxy response expected when cyber effect lifts (96% connectivity reduction)
+                </p>
+            </div>
+        `,
+        economic: `
+            <div class="network-graph" style="padding: 40px; text-align: center;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 24px; color: #3b82f6;">Economic Flow Analysis</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px;">
+                    <div class="network-node" style="background: rgba(239, 68, 68, 0.1); border: 2px solid #ef4444; padding: 20px; border-radius: 12px;">
+                        <h4 style="color: #ef4444; margin-bottom: 12px;">Oil Exports</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Strait of Hormuz: CLOSED</p>
+                        <p style="color: #ef4444; font-size: 1.1rem; font-weight: bold;">21M BBL/day disrupted</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">+6% oil price increase</p>
+                    </div>
+                    <div class="network-node" style="background: rgba(245, 158, 11, 0.1); border: 2px solid #f59e0b; padding: 20px; border-radius: 12px;">
+                        <h4 style="color: #f59e0b; margin-bottom: 12px;">Sanctions Evasion</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Shadow fleet disrupted</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Cyber tracking enhanced</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Revenue streams frozen</p>
+                    </div>
+                    <div class="network-node" style="background: rgba(139, 92, 246, 0.1); border: 2px solid #8b5cf6; padding: 20px; border-radius: 12px;">
+                        <h4 style="color: #8b5cf6; margin-bottom: 12px;">Domestic Economy</h4>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Banking system offline</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Rial in freefall</p>
+                        <p style="color: #94a3b8; font-size: 0.9rem;">Supply chains broken</p>
+                    </div>
+                </div>
+                <div style="margin-top: 30px; padding: 20px; background: rgba(59, 130, 246, 0.1); border-radius: 12px;">
+                    <h4 style="color: #3b82f6; margin-bottom: 12px;">Global Impact</h4>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">20% of world oil supply affected</p>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">Economic crisis emerging in importing nations</p>
+                    <p style="color: #94a3b8; font-size: 0.9rem;">Strategic petroleum reserves being tapped</p>
+                </div>
+            </div>
+        `
+    };
+    
+    container.innerHTML = visualizations[type] || '<p>No visualization available</p>';
+    console.log(`Showing network: ${type}`);
+}
+
+// ===== ACTORS (IMPROVED) =====
 function initializeActors() {
     if (!dashboardData) {
         console.error('Dashboard data not available for actors');
@@ -473,13 +640,13 @@ function initializeActors() {
     
     if (regionalContainer && dashboardData.regionalActors) {
         regionalContainer.innerHTML = dashboardData.regionalActors.map(actor => `
-            <div class="actor-card">
+            <div class="actor-card" style="break-inside: avoid; margin-bottom: 16px;">
                 <div class="actor-header">
-                    <span class="actor-name">${actor.name}</span>
-                    <span class="actor-position ${actor.position}">${actor.position}</span>
+                    <span class="actor-name" style="font-size: 1.1rem; font-weight: 600;">${actor.name}</span>
+                    <span class="actor-position ${actor.position}" style="padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">${actor.position}</span>
                 </div>
-                <div class="actor-stance">${actor.stance}</div>
-                <div class="actor-interest"><strong>Interest:</strong> ${actor.interest}</div>
+                <div class="actor-stance" style="margin-top: 12px; line-height: 1.6;">${actor.stance}</div>
+                <div class="actor-interest" style="margin-top: 12px; font-size: 0.9rem;"><strong>Interest:</strong> ${actor.interest}</div>
             </div>
         `).join('');
         console.log(`Rendered ${dashboardData.regionalActors.length} regional actors`);
@@ -487,13 +654,13 @@ function initializeActors() {
     
     if (extraContainer && dashboardData.extraRegionalActors) {
         extraContainer.innerHTML = dashboardData.extraRegionalActors.map(actor => `
-            <div class="actor-card">
+            <div class="actor-card" style="break-inside: avoid; margin-bottom: 16px;">
                 <div class="actor-header">
-                    <span class="actor-name">${actor.name}</span>
-                    <span class="actor-position ${actor.position}">${actor.position}</span>
+                    <span class="actor-name" style="font-size: 1.1rem; font-weight: 600;">${actor.name}</span>
+                    <span class="actor-position ${actor.position}" style="padding: 4px 12px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">${actor.position}</span>
                 </div>
-                <div class="actor-stance">${actor.stance}</div>
-                <div class="actor-interest"><strong>Interest:</strong> ${actor.interest}</div>
+                <div class="actor-stance" style="margin-top: 12px; line-height: 1.6;">${actor.stance}</div>
+                <div class="actor-interest" style="margin-top: 12px; font-size: 0.9rem;"><strong>Interest:</strong> ${actor.interest}</div>
             </div>
         `).join('');
         console.log(`Rendered ${dashboardData.extraRegionalActors.length} extra-regional actors`);
@@ -599,4 +766,4 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Log initialization complete
-console.log('Dashboard app.js loaded (FIXED VERSION with chronological timeline sorting)');
+console.log('Dashboard app.js loaded (MOBILE-FIXED VERSION with network analysis)');
