@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operation Epic Fury - Intelligence Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="grid-overlay"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-glass">
+        <div class="nav-content">
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        <path d="M2 12h20"/>
+                    </svg>
+                </div>
+                <span class="logo-text">EPIC FURY</span>
+                <span class="logo-subtitle">Intelligence Assessment</span>
+            </div>
+            <div class="nav-links">
+                <a href="#overview" class="nav-link active" data-section="overview">Overview</a>
+                <a href="#findings" class="nav-link" data-section="findings">Findings</a>
+                <a href="#scenarios" class="nav-link" data-section="scenarios">Scenarios</a>
+                <a href="#timeline" class="nav-link" data-section="timeline">Timeline</a>
+                <a href="#networks" class="nav-link" data-section="networks">Networks</a>
+                <a href="#regional" class="nav-link" data-section="regional">Regional</a>
+                <a href="#monitor" class="nav-link" data-section="monitor">Monitor</a>
+            </div>
+            <div class="nav-status">
+                <div class="status-indicator live"></div>
+                <span>LIVE MONITORING</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="overview">
+        <div class="hero-content">
+            <div class="classification-badge">
+                <span class="badge-text">OPEN SOURCE INTELLIGENCE</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">OPERATION</span>
+                <span class="title-accent">EPIC FURY</span>
+            </h1>
+            <p class="hero-subtitle">US-Israeli Campaign Against Iran • February 28, 2026</p>
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="confidence-display">0.80</div>
+                    <div class="stat-label">Primary Assessment Confidence</div>
+                    <div class="stat-bar">
+                        <div class="stat-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">146</div>
+                    <div class="stat-label">Intelligence Searches</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">350+</div>
+                    <div class="stat-label">Verified Sources</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">65K+</div>
+                    <div class="stat-label">Words of Analysis</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="conflict-map" id="conflict-map">
+                <!-- SVG Map will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Executive Summary Dashboard -->
+    <section class="dashboard-section">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="title-icon">⚡</span>
+                Executive Dashboard
+            </h2>
+            <div class="timestamp">Last Updated: <span id="last-update">2026-02-28 19:45 EST</span></div>
+        </div>
+
+        <div class="status-grid">
+            <!-- Khamenei Status -->
+            <div class="status-card critical" data-category="leadership">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                            <circle cx="12" cy="7" r="4"/>
+                        </svg>
+                    </div>
+                    <div class="card-title">Supreme Leader Status</div>
+                    <div class="confidence-badge">0.65</div>
+                </div>
+                <div class="card-body">
+                    <div class="status-value">
+                        <span class="status-text">LIKELY DEAD</span>
+                        <span class="status-indicator critical"></span>
+                    </div>
+                    <div class="status-detail">
+                        <p>Trump confirmed death. Iran denies. No video evidence.</p>
+                    </div>
+                    <div class="status-evidence">
+                        <div class="evidence-item confirm">
+                            <span class="evidence-icon">✓</span>
+                            <span>Presidential confirmation</span>
+                        </div>
+                        <div class="evidence-item confirm">
+                            <span class="evidence-icon">✓</span>
+                            <span>Netanyahu: "Signs point to death"</span>
+                        </div>
+                        <div class="evidence-item warn">
+                            <span class="evidence-icon">!</span>
+                            <span>No video for 15+ hours</span>
+                        </div>
+                        <div class="evidence-item deny">
+                            <span class="evidence-icon">✗</span>
+                            <span>Iran denies claim</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="action-btn" onclick="showDetail('khamenei')">View Analysis</button>
+                </div>
+            </div>
+
+            <!-- Cyber Attack Status -->
+            <div class="status-card active" data-category="military">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <div class="card-title">Cyber Attack</div>
+                    <div class="confidence-badge high">0.90</div>
+                </div>
+                <div class="card-body">
+                    <div class="status-value">
+                        <span class="status-text">ONGOING</span>
+                        <span class="status-indicator active"></span>
+                    </div>
+                    <div class="metric-display">
+                        <div class="metric">
+                            <div class="metric-value">4%</div>
+                            <div class="metric-label">Connectivity</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value" id="cyber-hours">15+</div>
+                            <div class="metric-label">Hours</div>
+                        </div>
+                    </div>
+                    <div class="status-detail">
+                        <p>Largest cyberattack in history. 96% reduction in Iranian connectivity.</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="action-btn" onclick="showDetail('cyber')">Technical Details</button>
+                </div>
+            </div>
+
+            <!-- Hormuz Status -->
+            <div class="status-card active" data-category="economic">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                        </svg>
+                    </div>
+                    <div class="card-title">Strait of Hormuz</div>
+                    <div class="confidence-badge high">0.95</div>
+                </div>
+                <div class="card-body">
+                    <div class="status-value">
+                        <span class="status-text">CLOSED</span>
+                        <span class="status-indicator critical"></span>
+                    </div>
+                    <div class="metric-display">
+                        <div class="metric">
+                            <div class="metric-value">21M</div>
+                            <div class="metric-label">BBL/Day</div>
+                        </div>
+                        <div class="metric">
+                            <div class="metric-value oil-price">+6%</div>
+                            <div class="metric-label">Oil Price</div>
+                        </div>
+                    </div>
+                    <div class="status-detail">
+                        <p>20% of world oil supply disrupted. Global economic crisis emerging.</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="action-btn" onclick="showDetail('hormuz')">Economic Impact</button>
+                </div>
+            </div>
+
+            <!-- Congressional Status -->
+            <div class="status-card warning" data-category="political">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+                            <line x1="4" y1="22" x2="4" y2="15"/>
+                        </svg>
+                    </div>
+                    <div class="card-title">Congress</div>
+                    <div class="confidence-badge">0.90</div>
+                </div>
+                <div class="card-body">
+                    <div class="status-value">
+                        <span class="status-text">VOTE IMMINENT</span>
+                        <span class="status-indicator warning"></span>
+                    </div>
+                    <div class="status-detail">
+                        <p>War powers resolution vote expected within days. Constitutional crisis possible.</p>
+                    </div>
+                    <div class="probability-bar">
+                        <div class="prob-label">
+                            <span>Passage</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="prob-track">
+                            <div class="prob-fill" style="width: 75%"></div>
+                        </div>
+                        <div class="prob-label">
+                            <span>Veto Override</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="prob-track">
+                            <div class="prob-fill" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="action-btn" onclick="showDetail('congress')">Political Analysis</button>
+                </div>
+            </div>
+
+            <!-- Proxy Response -->
+            <div class="status-card stable" data-category="military">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="2"/>
+                            <path d="M12 2v4m0 12v4M2 12h4m12 0h4"/>
+                            <path d="M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/>
+                        </svg>
+                    </div>
+                    <div class="card-title">Proxy Networks</div>
+                    <div class="confidence-badge">0.85</div>
+                </div>
+                <div class="card-body">
+                    <div class="status-value">
+                        <span class="status-text">PARALYZED</span>
+                        <span class="status-indicator stable"></span>
+                    </div>
+                    <div class="proxy-grid">
+                        <div class="proxy-item">
+                            <span class="proxy-name">Hezbollah</span>
+                            <span class="proxy-status silent">Silent</span>
+                        </div>
+                        <div class="proxy-item">
+                            <span class="proxy-name">Houthis</span>
+                            <span class="proxy-status silent">Limited</span>
+                        </div>
+                        <div class="proxy-item">
+                            <span class="proxy-name">PMF</span>
+                            <span class="proxy-status silent">Silent</span>
+                        </div>
+                    </div>
+                    <div class="status-detail">
+                        <p>Cyber disruption preventing coordination. Response expected when connectivity restored.</p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="action-btn" onclick="showDetail('proxies')">Network Analysis</button>
+                </div>
+            </div>
+
+            <!-- Regional Status -->
+            <div class="status-card warning" data-category="regional">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10"/>
+                        </svg>
+                    </div>
+                    <div class="card-title">Regional</div>
+                    <div class="confidence-badge">0.80</div>
+                </div>
+                <div class="card-body">
+                    <div class="status-value">
+                        <span class="status-text">ESCALATING</span>
+                        <span class="status-indicator warning"></span>
+                    </div>
+                    <div class="status-detail">
+                        <p>Gulf states struck. 1 killed in UAE, 4 injured. Saudi Arabia confirms strikes.</p>
+                    </div>
+                    <div class="regional-quick-stats">
+                        <div class="quick-stat">
+                            <span class="qs-value">1</span>
+                            <span class="qs-label">Killed (UAE)</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="qs-value">4</span>
+                            <span class="qs-label">Injured</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="qs-value">5</span>
+                            <span class="qs-label">States Hit</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button class="action-btn" onclick="showDetail('regional')">Regional Map</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Findings Section -->
+    <section class="findings-section" id="findings">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="title-icon">🔍</span>
+                Eight Critical Findings
+            </h2>
+            <p class="section-subtitle">High-confidence intelligence assessments with supporting evidence</p>
+        </div>
+
+        <div class="findings-container">
+            <div class="findings-nav">
+                <div class="finding-tab active" data-finding="1">
+                    <span class="tab-number">01</span>
+                    <span class="tab-title">Khamenei Status</span>
+                </div>
+                <div class="finding-tab" data-finding="2">
+                    <span class="tab-number">02</span>
+                    <span class="tab-title">Cyber Attack</span>
+                </div>
+                <div class="finding-tab" data-finding="3">
+                    <span class="tab-number">03</span>
+                    <span class="tab-title">Hormuz Closure</span>
+                </div>
+                <div class="finding-tab" data-finding="4">
+                    <span class="tab-number">04</span>
+                    <span class="tab-title">Kurdish Response</span>
+                </div>
+                <div class="finding-tab" data-finding="5">
+                    <span class="tab-number">05</span>
+                    <span class="tab-title">Ethnic Fragmentation</span>
+                </div>
+                <div class="finding-tab" data-finding="6">
+                    <span class="tab-number">06</span>
+                    <span class="tab-title">Leadership Decapitation</span>
+                </div>
+                <div class="finding-tab" data-finding="7">
+                    <span class="tab-number">07</span>
+                    <span class="tab-title">Congress</span>
+                </div>
+                <div class="finding-tab" data-finding="8">
+                    <span class="tab-number">08</span>
+                    <span class="tab-title">Turkey Position</span>
+                </div>
+            </div>
+
+            <div class="findings-content" id="findings-content">
+                <!-- Finding content loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Scenario Analysis Section -->
+    <section class="scenarios-section" id="scenarios">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="title-icon">📊</span>
+                Scenario Analysis
+            </h2>
+            <p class="section-subtitle">Six plausible futures with probability assessments</p>
+        </div>
+
+        <div class="scenarios-grid">
+            <div class="scenario-card" data-scenario="1">
+                <div class="scenario-header">
+                    <div class="scenario-probability">
+                        <div class="prob-circle" data-value="35">
+                            <svg viewBox="0 0 36 36">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path class="circle-fill" stroke-dasharray="35, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                            <span class="prob-text">35%</span>
+                        </div>
+                    </div>
+                    <div class="scenario-title">
+                        <h3>Protracted Conflict</h3>
+                        <span class="confidence-level">Confidence: 0.70</span>
+                    </div>
+                </div>
+                <div class="scenario-body">
+                    <p class="scenario-desc">Regime survives Khamenei's death. Succession managed. IRGC retains control. Proxies respond when cyber lifts. Hormuz remains closed.</p>
+                    <div class="scenario-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">Months to Years</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Impact</span>
+                            <span class="detail-value severe">Severe</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Outcome</span>
+                            <span class="detail-value">Tactical Success</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="scenario-indicators">
+                    <h4>Early Warning Indicators</h4>
+                    <ul class="indicator-list">
+                        <li class="indicator">Khamenei video appears alive</li>
+                        <li class="indicator">Succession proceeds smoothly</li>
+                        <li class="indicator">IRGC remains coherent</li>
+                        <li class="indicator">Proxies launch attacks</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="scenario-card" data-scenario="2">
+                <div class="scenario-header">
+                    <div class="scenario-probability">
+                        <div class="prob-circle" data-value="30">
+                            <svg viewBox="0 0 36 36">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path class="circle-fill success" stroke-dasharray="30, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                            <span class="prob-text">30%</span>
+                        </div>
+                    </div>
+                    <div class="scenario-title">
+                        <h3>Rapid Regime Collapse</h3>
+                        <span class="confidence-level">Confidence: 0.75</span>
+                    </div>
+                </div>
+                <div class="scenario-body">
+                    <p class="scenario-desc">Khamenei confirmed dead. Succession crisis becomes power struggle. IRGC fractures. Military defects. Provisional government forms.</p>
+                    <div class="scenario-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">Weeks</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Impact</span>
+                            <span class="detail-value moderate">Moderate</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Outcome</span>
+                            <span class="detail-value success">Strategic Success</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="scenario-indicators">
+                    <h4>Early Warning Indicators</h4>
+                    <ul class="indicator-list">
+                        <li class="indicator">No Khamenei video for 72+ hours</li>
+                        <li class="indicator">IRGC commanders defect</li>
+                        <li class="indicator">Army declares neutrality</li>
+                        <li class="indicator">Proxies stand down</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="scenario-card" data-scenario="3">
+                <div class="scenario-header">
+                    <div class="scenario-probability">
+                        <div class="prob-circle" data-value="20">
+                            <svg viewBox="0 0 36 36">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path class="circle-fill warning" stroke-dasharray="20, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                            <span class="prob-text">20%</span>
+                        </div>
+                    </div>
+                    <div class="scenario-title">
+                        <h3>Fragmentation</h3>
+                        <span class="confidence-level">Confidence: 0.60</span>
+                    </div>
+                </div>
+                <div class="scenario-body">
+                    <p class="scenario-desc">Regime survives but loses periphery. Ethnic regions declare autonomy. De facto partition. Nuclear facilities in contested areas.</p>
+                    <div class="scenario-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">Years</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Impact</span>
+                            <span class="detail-value severe">Severe</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Outcome</span>
+                            <span class="detail-value mixed">Mixed</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="scenario-indicators">
+                    <h4>Early Warning Indicators</h4>
+                    <ul class="indicator-list">
+                        <li class="indicator">Regime survives in Tehran</li>
+                        <li class="indicator">Kurds declare autonomy</li>
+                        <li class="indicator">Regional actors intervene</li>
+                        <li class="indicator">Nuclear sites contested</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="scenario-card" data-scenario="4">
+                <div class="scenario-header">
+                    <div class="scenario-probability">
+                        <div class="prob-circle" data-value="10">
+                            <svg viewBox="0 0 36 36">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path class="circle-fill danger" stroke-dasharray="10, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                            <span class="prob-text">10%</span>
+                        </div>
+                    </div>
+                    <div class="scenario-title">
+                        <h3>Regional War</h3>
+                        <span class="confidence-level">Confidence: 0.65</span>
+                    </div>
+                </div>
+                <div class="scenario-body">
+                    <p class="scenario-desc">Cyber effect lifts. Proxies coordinate massive response. Hezbollah launches 100K+ rockets. Turkey intervenes. Global powers drawn in.</p>
+                    <div class="scenario-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">Months</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Impact</span>
+                            <span class="detail-value catastrophic">Catastrophic</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Outcome</span>
+                            <span class="detail-value disaster">Strategic Disaster</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="scenario-indicators">
+                    <h4>Early Warning Indicators</h4>
+                    <ul class="indicator-list">
+                        <li class="indicator">Internet restored</li>
+                        <li class="indicator">Hezbollah rocket barrage</li>
+                        <li class="indicator">Turkey intervenes</li>
+                        <li class="indicator">PMF attacks US bases</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="scenario-card" data-scenario="5">
+                <div class="scenario-header">
+                    <div class="scenario-probability">
+                        <div class="prob-circle" data-value="5">
+                            <svg viewBox="0 0 36 36">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path class="circle-fill danger" stroke-dasharray="5, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                            <span class="prob-text">5%</span>
+                        </div>
+                    </div>
+                    <div class="scenario-title">
+                        <h3>Civil War</h3>
+                        <span class="confidence-level">Confidence: 0.50</span>
+                    </div>
+                </div>
+                <div class="scenario-body">
+                    <p class="scenario-desc">Complete state collapse. Multiple factions compete. Nuclear weapons loose. Massive refugee flows. Regional military intervention.</p>
+                    <div class="scenario-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">Years-Decades</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Impact</span>
+                            <span class="detail-value catastrophic">Catastrophic</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Outcome</span>
+                            <span class="detail-value disaster">Failure</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scenario-card" data-scenario="6">
+                <div class="scenario-header">
+                    <div class="scenario-probability">
+                        <div class="prob-circle" data-value="5">
+                            <svg viewBox="0 0 36 36">
+                                <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                <path class="circle-fill neutral" stroke-dasharray="5, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                            </svg>
+                            <span class="prob-text">5%</span>
+                        </div>
+                    </div>
+                    <div class="scenario-title">
+                        <h3>Negotiated Settlement</h3>
+                        <span class="confidence-level">Confidence: 0.40</span>
+                    </div>
+                </div>
+                <div class="scenario-body">
+                    <p class="scenario-desc">Regime agrees to negotiate. US/Israel pause. New JCPOA negotiated. Regime survives with constraints. Nuclear rollback.</p>
+                    <div class="scenario-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Duration</span>
+                            <span class="detail-value">Months</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Impact</span>
+                            <span class="detail-value minimal">Minimal</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Outcome</span>
+                            <span class="detail-value partial">Partial Success</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scenario-chart-container">
+            <h3>Probability Distribution</h3>
+            <canvas id="scenarioChart"></canvas>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section" id="timeline">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="title-icon">📅</span>
+                Operation Timeline
+            </h2>
+            <p class="section-subtitle">Hour-by-hour account of events</p>
+        </div>
+
+        <div class="timeline-controls">
+            <button class="timeline-filter active" data-filter="all">All Events</button>
+            <button class="timeline-filter" data-filter="kinetic">Kinetic</button>
+            <button class="timeline-filter" data-filter="cyber">Cyber</button>
+            <button class="timeline-filter" data-filter="political">Political</button>
+            <button class="timeline-filter" data-filter="regional">Regional</button>
+        </div>
+
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            <div id="timeline-events">
+                <!-- Events loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Network Analysis Section -->
+    <section class="networks-section" id="networks">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="title-icon">🕸️</span>
+                Network Analysis
+            </h2>
+            <p class="section-subtitle">Iranian power structures, proxy networks, and economic flows</p>
+        </div>
+
+        <div class="network-tabs">
+            <button class="network-tab active" data-network="power">Power Structure</button>
+            <button class="network-tab" data-network="proxies">Proxy Networks</button>
+            <button class="network-tab" data-network="economic">Economic Flows</button>
+        </div>
+
+        <div class="network-visualization" id="network-viz">
+            <!-- Network graph loaded dynamically -->
+        </div>
+    </section>
+
+    <!-- Regional Analysis Section -->
+    <section class="regional-section" id="regional">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="title-icon">🌍</span>
+                Regional Dynamics
+            </h2>
+            <p class="section-subtitle">Positions and interests of regional and international actors</p>
+        </div>
+
+        <div class="regional-map-container">
+            <div class="regional-map" id="regional-map-viz">
+                <!-- Interactive map -->
+            </div>
+            <div class="regional-legend">
+                <div class="legend-item">
+                    <span class="legend-color support"></span>
+                    <span>Supports Operation</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color oppose"></span>
+                    <span>Opposes Operation</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color neutral"></span>
+                    <span>Neutral/Mediator</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color target"></span>
+                    <span>Target</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="actors-grid">
+            <div class="actor-category">
+                <h3>Regional Actors</h3>
+                <div class="actors-list" id="regional-actors">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+            <div class="actor-category">
+                <h3>Extra-Regional Powers</h3>
+                <div class="actors-list" id="extraregional-actors">
+                    <!-- Loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Monitoring Section -->
+    <section class="monitor-section" id="monitor">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="title-icon">📡</span>
+                Live Monitoring
+            </h2>
+            <p class="section-subtitle">Critical watch items and collection priorities</p>
+        </div>
+
+        <div class="monitor-grid">
+            <div class="watch-list">
+                <h3>Critical Watch Items (Next 72 Hours)</h3>
+                <div class="watch-items">
+                    <div class="watch-item critical">
+                        <div class="watch-priority">CRITICAL</div>
+                        <div class="watch-content">
+                            <h4>Khamenei Video Evidence</h4>
+                            <p>Single most important indicator. If video appears, complete reassessment required.</p>
+                            <div class="watch-timing">Timeline: Next 24-48 hours</div>
+                        </div>
+                    </div>
+                    <div class="watch-item high">
+                        <div class="watch-priority">HIGH</div>
+                        <div class="watch-content">
+                            <h4>Cyber Effect Duration</h4>
+                            <p>When internet restored, expect coordinated proxy response. Monitor NetBlocks.</p>
+                            <div class="watch-timing">Timeline: Ongoing</div>
+                        </div>
+                    </div>
+                    <div class="watch-item high">
+                        <div class="watch-priority">HIGH</div>
+                        <div class="watch-content">
+                            <h4>IAEA Assessment (Monday)</h4>
+                            <p>Nuclear facility damage assessment. Will verify extent of strikes.</p>
+                            <div class="watch-timing">Timeline: March 2, 2026</div>
+                        </div>
+                    </div>
+                    <div class="watch-item medium">
+                        <div class="watch-priority">MEDIUM</div>
+                        <div class="watch-content">
+                            <h4>Congressional Vote</h4>
+                            <p>War powers resolution. Could constrain operation duration and scope.</p>
+                            <div class="watch-timing">Timeline: Within 7 days</div>
+                        </div>
+                    </div>
+                    <div class="watch-item medium">
+                        <div class="watch-priority">MEDIUM</div>
+                        <div class="watch-content">
+                            <h4>Hormuz Duration</h4>
+                            <p>Strait closure status. Economic impact depends on duration.</p>
+                            <div class="watch-timing">Timeline: Ongoing</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collection-priorities">
+                <h3>Collection Priorities</h3>
+                <div class="priority-list">
+                    <div class="priority-item">
+                        <span class="priority-rank">1</span>
+                        <span class="priority-text">Khamenei status (video, medical, succession)</span>
+                        <span class="priority-urgency critical">CRITICAL</span>
+                    </div>
+                    <div class="priority-item">
+                        <span class="priority-rank">2</span>
+                        <span class="priority-text">Cyber effect duration (technical monitoring)</span>
+                        <span class="priority-urgency high">HIGH</span>
+                    </div>
+                    <div class="priority-item">
+                        <span class="priority-rank">3</span>
+                        <span class="priority-text">Nuclear facility damage (satellite, IAEA)</span>
+                        <span class="priority-urgency high">HIGH</span>
+                    </div>
+                    <div class="priority-item">
+                        <span class="priority-rank">4</span>
+                        <span class="priority-text">Proxy network status (communications, readiness)</span>
+                        <span class="priority-urgency high">HIGH</span>
+                    </div>
+                    <div class="priority-item">
+                        <span class="priority-rank">5</span>
+                        <span class="priority-text">Regional actor intentions (diplomatic, military)</span>
+                        <span class="priority-urgency medium">MEDIUM</span>
+                    </div>
+                    <div class="priority-item">
+                        <span class="priority-rank">6</span>
+                        <span class="priority-text">Post-regime planning (opposition, US planning)</span>
+                        <span class="priority-urgency medium">MEDIUM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testable-predictions">
+            <h3>Testable Predictions</h3>
+            <div class="predictions-grid">
+                <div class="prediction-card">
+                    <div class="prediction-timeframe">24 Hours</div>
+                    <div class="prediction-confidence">0.60</div>
+                    <p>Khamenei video appears OR succession announcement</p>
+                </div>
+                <div class="prediction-card">
+                    <div class="prediction-timeframe">72 Hours</div>
+                    <div class="prediction-confidence">0.75</div>
+                    <p>Khamenei status resolved (video OR confirmed death)</p>
+                </div>
+                <div class="prediction-card">
+                    <div class="prediction-timeframe">7 Days</div>
+                    <div class="prediction-confidence">0.70</div>
+                    <p>Regime fate clear (survival, collapse, or fragmentation)</p>
+                </div>
+                <div class="prediction-card">
+                    <div class="prediction-timeframe">30 Days</div>
+                    <div class="prediction-confidence">0.65</div>
+                    <p>Scenario trajectory established</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Classification</h4>
+                <p>Open Source Intelligence Assessment</p>
+                <p>Confidence Framework: 0.0-1.0 scale</p>
+                <p>Methodology: ACH, structured analytical techniques</p>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <p>146 Searches Conducted</p>
+                <p>350+ Sources Verified</p>
+                <p>22 Intelligence Products</p>
+                <p>65,000+ Words of Analysis</p>
+            </div>
+            <div class="footer-section">
+                <h4>Update Protocol</h4>
+                <p>Updated: 2026-02-28 19:45 EST</p>
+                <p>Next Update: On major development</p>
+                <p>Trigger: Khamenei video or escalation</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Intelligence Assessment • Operation Epic Fury • February 28, 2026</p>
+            <p class="footer-attribution">Hail Eris. All Hail Discordia. 🍎🦡</p>
+        </div>
+    </footer>
+
+    <!-- Modal for detailed views -->
+    <div class="modal" id="detail-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modal-body">
+                <!-- Content loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

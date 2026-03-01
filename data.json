@@ -1,0 +1,673 @@
+{
+  "lastUpdated": "2026-03-01T01:44:36Z",
+  "lastUpdatedDisplay": "Feb 28, 2026 — 20:46 EST",
+  "operationDuration": "18+ hours",
+  "cyberHours": 18.5,
+  "statusIndicators": {
+    "khamenei": {
+      "status": "CLAIMED_DEAD",
+      "confidence": 0.65,
+      "trend": "up",
+      "lastUpdate": "18:30 EST"
+    },
+    "cyber": {
+      "status": "ONGOING",
+      "confidence": 0.90,
+      "trend": "stable",
+      "lastUpdate": "20:40 EST"
+    },
+    "hormuz": {
+      "status": "CLOSED",
+      "confidence": 0.95,
+      "trend": "stable",
+      "lastUpdate": "05:00 Local"
+    },
+    "congress": {
+      "status": "IMMINENT",
+      "confidence": 0.90,
+      "trend": "up",
+      "lastUpdate": "19:00 EST"
+    },
+    "proxies": {
+      "status": "PARALYZED",
+      "confidence": 0.85,
+      "trend": "stable",
+      "lastUpdate": "20:00 EST"
+    },
+    "regional": {
+      "status": "MODERATE",
+      "confidence": 0.80,
+      "trend": "stable",
+      "lastUpdate": "18:00 EST"
+    }
+  },
+  "casualties": {
+    "israel": {
+      "killed": 3,
+      "injured": "dozens"
+    },
+    "uae": {
+      "killed": 1,
+      "injured": 4
+    },
+    "saudi": {
+      "killed": "unknown",
+      "injured": "unknown"
+    },
+    "iran": {
+      "killed": "unknown",
+      "injured": "unknown"
+    }
+  },
+  "economicImpact": {
+    "oilPriceChange": "+6%",
+    "hormuzTraffic": "0 vessels",
+    "supplyChainStatus": "Disruption beginning"
+  },
+  "findings": {
+    "1": {
+      "title": "Khamenei Death Claim Escalates to Presidential Confirmation",
+      "confidence": 0.65,
+      "status": "critical",
+      "summary": "President Trump confirmed Khamenei's death. Iran denies. No video evidence has emerged for 18+ hours.",
+      "evidence": [
+        {
+          "type": "confirm",
+          "text": "President Trump: 'Khamenei is dead' (18:00 EST)"
+        },
+        {
+          "type": "confirm",
+          "text": "Netanyahu: 'Signs point to Khamenei being dead'"
+        },
+        {
+          "type": "confirm",
+          "text": "Israeli officials confirmed to AP"
+        },
+        {
+          "type": "warn",
+          "text": "No video for 18+ hours"
+        },
+        {
+          "type": "deny",
+          "text": "Iran denies claim"
+        }
+      ],
+      "sources": [
+        "NBC",
+        "CNN",
+        "Washington Post",
+        "New York Times",
+        "Fox News",
+        "NPR",
+        "Al Jazeera"
+      ]
+    },
+    "2": {
+      "title": "Largest Cyberattack in History Paralyzed Iranian C2",
+      "confidence": 0.90,
+      "status": "active",
+      "summary": "Nationwide cyberattack has reduced Iranian internet connectivity to 4%. Largest in history. Duration: 18+ hours and ongoing.",
+      "evidence": [
+        {
+          "type": "confirm",
+          "text": "Jerusalem Post: 'Largest cyberattack in history'"
+        },
+        {
+          "type": "confirm",
+          "text": "NetBlocks: 4% connectivity"
+        },
+        {
+          "type": "confirm",
+          "text": "RFE/RL: 'Digital darkness'"
+        },
+        {
+          "type": "confirm",
+          "text": "96% reduction nationwide"
+        }
+      ],
+      "sources": [
+        "Jerusalem Post",
+        "NetBlocks",
+        "Radio Free Europe",
+        "Technical monitoring"
+      ]
+    },
+    "3": {
+      "title": "Hormuz Closure Confirmed, Global Oil Crisis Emerging",
+      "confidence": 0.95,
+      "status": "active",
+      "summary": "Strait of Hormuz closed. 21M barrels/day at risk. Oil prices +6%. Global economic crisis emerging.",
+      "evidence": [
+        {
+          "type": "confirm",
+          "text": "IRGC: Passage 'not allowed'"
+        },
+        {
+          "type": "confirm",
+          "text": "EU naval mission confirmation"
+        },
+        {
+          "type": "confirm",
+          "text": "Major oil traders suspended shipments"
+        },
+        {
+          "type": "confirm",
+          "text": "Crude oil futures +6%"
+        }
+      ],
+      "sources": [
+        "Reuters",
+        "EU Naval Mission",
+        "Bloomberg",
+        "Market reports"
+      ]
+    },
+    "4": {
+      "title": "Kurdish Opposition Did NOT Endorse Operation",
+      "confidence": 0.90,
+      "status": "stable",
+      "summary": "Major ethnic minorities have not endorsed the operation. No evidence of coordinated uprisings. This is regime replacement, not liberation.",
+      "evidence": [
+        {
+          "type": "warn",
+          "text": "No statement from Kurdish parties (KDP, PUK, Gorran)"
+        },
+        {
+          "type": "warn",
+          "text": "Kurdish sources: 'Not asking for liberation'"
+        },
+        {
+          "type": "warn",
+          "text": "No uprisings in Kurdish regions"
+        },
+        {
+          "type": "confirm",
+          "text": "Historical pattern: US abandonment (1991, 2017)"
+        }
+      ],
+      "sources": [
+        "Kurdish parties",
+        "Regional sources",
+        "Historical record"
+      ]
+    },
+    "5": {
+      "title": "Ethnic Fragmentation Risk Elevated",
+      "confidence": 0.85,
+      "status": "warning",
+      "summary": "Iran is not homogeneous. If central government collapses, ethnic groups may declare autonomy. Nuclear facilities could become contested.",
+      "evidence": [
+        {
+          "type": "warn",
+          "text": "Persians: 60% | Azeris: 16-25% | Kurds: 10%"
+        },
+        {
+          "type": "warn",
+          "text": "Historical precedent: Yugoslavia 1991-2001"
+        },
+        {
+          "type": "warn",
+          "text": "Regional actors have interests in fragmentation"
+        },
+        {
+          "type": "critical",
+          "text": "Nuclear weapons could become contested"
+        }
+      ],
+      "sources": [
+        "Ethnic demographic data",
+        "Regional analysis",
+        "Historical precedent"
+      ]
+    },
+    "6": {
+      "title": "Leadership Decapitation at Multiple Levels",
+      "confidence": 0.75,
+      "status": "critical",
+      "summary": "Systematic targeting of Iranian leadership. Khamenei, IRGC commanders, nuclear scientists, military leadership all struck.",
+      "evidence": [
+        {
+          "type": "confirm",
+          "text": "Khamenei compound struck"
+        },
+        {
+          "type": "confirm",
+          "text": "IRGC commanders killed"
+        },
+        {
+          "type": "confirm",
+          "text": "Nuclear scientists targeted"
+        },
+        {
+          "type": "confirm",
+          "text": "Command centers struck"
+        }
+      ],
+      "sources": [
+        "Israeli sources",
+        "Strike assessments",
+        "Iranian government structure"
+      ]
+    },
+    "7": {
+      "title": "Congressional War Powers Challenge Imminent",
+      "confidence": 0.90,
+      "status": "warning",
+      "summary": "War powers resolution vote expected within days. Bipartisan concern. Constitutional crisis possible.",
+      "evidence": [
+        {
+          "type": "confirm",
+          "text": "CNN: 'Congress to vote on war powers'"
+        },
+        {
+          "type": "confirm",
+          "text": "PBS: 'Members demand swift vote'"
+        },
+        {
+          "type": "confirm",
+          "text": "Guardian: 'Acts of war unauthorized'"
+        },
+        {
+          "type": "warn",
+          "text": "Bipartisan concern growing"
+        }
+      ],
+      "sources": [
+        "CNN",
+        "PBS",
+        "Washington Post",
+        "Politico",
+        "Guardian"
+      ]
+    },
+    "8": {
+      "title": "Turkey's Complex Position",
+      "confidence": 0.80,
+      "status": "warning",
+      "summary": "Turkey condemned strikes publicly but privately pragmatic. Red line: Kurdish autonomy. Would intervene if Kurds declare independence.",
+      "evidence": [
+        {
+          "type": "confirm",
+          "text": "Turkey condemned strikes"
+        },
+        {
+          "type": "confirm",
+          "text": "NATO member with US bases"
+        },
+        {
+          "type": "warn",
+          "text": "Red line: Kurdish autonomy"
+        },
+        {
+          "type": "warn",
+          "text": "Historical precedent: Syria interventions (2016, 2018, 2019)"
+        }
+      ],
+      "sources": [
+        "Turkish government statements",
+        "Regional analysis",
+        "Historical record"
+      ]
+    }
+  },
+  "scenarios": [
+    {
+      "name": "Protracted Conflict",
+      "probability": 35,
+      "description": "Regime survives but weakened. Long-term low-intensity conflict.",
+      "earlyWarning": [
+        "Government continues functioning",
+        "IRGC operates",
+        "No mass protests"
+      ]
+    },
+    {
+      "name": "Rapid Regime Collapse",
+      "probability": 30,
+      "description": "Regime falls within weeks. Possible fragmentation.",
+      "earlyWarning": [
+        "Khamenei confirmed dead",
+        "Mass defections",
+        "Provincial autonomy declarations"
+      ]
+    },
+    {
+      "name": "Regime Survival/Fragmentation",
+      "probability": 20,
+      "description": "Central government loses control of regions.",
+      "earlyWarning": [
+        "Ethnic groups declare autonomy",
+        "IRGC units fragment",
+        "Nuclear sites contested"
+      ]
+    },
+    {
+      "name": "Regional War",
+      "probability": 10,
+      "description": "Multiple regional actors enter conflict.",
+      "earlyWarning": [
+        "Hezbollah major offensive",
+        "Turkish intervention",
+        "Arab League mobilization"
+      ]
+    },
+    {
+      "name": "Civil War",
+      "probability": 5,
+      "description": "Multi-faction internal conflict.",
+      "earlyWarning": [
+        "Competing governments",
+        "Ethnic/sectarian violence",
+        "Mass displacement"
+      ]
+    }
+  ],
+  "timeline": [
+    {
+      "time": "Jan 23, 2026",
+      "title": "Carrier Deployment",
+      "desc": "USS Carl Vinson deploys to Persian Gulf",
+      "type": "military"
+    },
+    {
+      "time": "Feb 27, ~20:00 EST",
+      "title": "IAEA Finding",
+      "desc": "IAEA announces Iran has enough material for 3-4 nuclear weapons",
+      "type": "political"
+    },
+    {
+      "time": "Feb 28, ~00:00 Local",
+      "title": "Cyberattack Begins",
+      "desc": "Largest cyberattack in history launched against Iranian infrastructure",
+      "type": "cyber"
+    },
+    {
+      "time": "Feb 28, ~00:30 Local",
+      "title": "Kinetic Strikes Begin",
+      "desc": "US and Israeli aircraft strike nuclear facilities, military bases, leadership compounds",
+      "type": "kinetic"
+    },
+    {
+      "time": "Feb 28, ~02:00 Local",
+      "title": "Fordow Struck",
+      "desc": "Deep underground enrichment facility targeted with bunker busters",
+      "type": "kinetic"
+    },
+    {
+      "time": "Feb 28, ~02:30 Local",
+      "title": "Natanz Destroyed",
+      "desc": "Primary enrichment facility severely damaged",
+      "type": "kinetic"
+    },
+    {
+      "time": "Feb 28, ~03:00 Local",
+      "title": "Leadership Strikes",
+      "desc": "Khamenei compound, IRGC headquarters targeted",
+      "type": "kinetic"
+    },
+    {
+      "time": "Feb 28, ~04:00 Local",
+      "title": "Air Defense Degraded",
+      "desc": "Iranian air defense systems disabled",
+      "type": "kinetic"
+    },
+    {
+      "time": "Feb 28, ~05:00 Local",
+      "title": "Hormuz Closure Announced",
+      "desc": "IRGC declares Strait of Hormuz closed",
+      "type": "economic"
+    },
+    {
+      "time": "Feb 28, ~06:00 Local",
+      "title": "Iranian Counterattack",
+      "desc": "Ballistic missiles launched at Israel, Gulf states",
+      "type": "kinetic"
+    },
+    {
+      "time": "Feb 28, ~07:00 Local",
+      "title": "Israeli Casualties",
+      "desc": "3 killed in Rishon LeZion, Holon, Tel Aviv",
+      "type": "kinetic"
+    },
+    {
+      "time": "Feb 28, ~08:00 Local",
+      "title": "Gulf States Hit",
+      "desc": "UAE: 1 killed, 4 injured. Saudi Arabia, Kuwait, Bahrain struck",
+      "type": "regional"
+    },
+    {
+      "time": "Feb 28, ~10:00 EST",
+      "title": "Oil Prices Spike",
+      "desc": "Crude oil futures jump 6% on Hormuz closure news",
+      "type": "economic"
+    },
+    {
+      "time": "Feb 28, ~14:00 EST",
+      "title": "Israeli Sources",
+      "desc": "Israeli officials: 'Khamenei presumed dead'",
+      "type": "political"
+    },
+    {
+      "time": "Feb 28, ~16:00 EST",
+      "title": "Netanyahu Statement",
+      "desc": "'Signs point to Khamenei being dead'",
+      "type": "political"
+    },
+    {
+      "time": "Feb 28, ~18:00 EST",
+      "title": "Trump Confirms",
+      "desc": "President Trump: 'Iranian Supreme Leader Ali Khamenei is dead'",
+      "type": "political"
+    },
+    {
+      "time": "Feb 28, ~18:30 EST",
+      "title": "Iran Denies",
+      "desc": "Iranian state media denies Khamenei death claim",
+      "type": "political"
+    },
+    {
+      "time": "Feb 28, ~19:00 EST",
+      "title": "Congress Reacts",
+      "desc": "Members of Congress demand war powers vote",
+      "type": "political"
+    }
+  ],
+  "regionalActors": [
+    {
+      "name": "Saudi Arabia",
+      "position": "support",
+      "stance": "De facto support, silent publicly",
+      "interest": "Countering Iranian influence"
+    },
+    {
+      "name": "UAE",
+      "position": "support",
+      "stance": "De facto support, Abraham Accords partner",
+      "interest": "Countering Iran, economic stability"
+    },
+    {
+      "name": "Bahrain",
+      "position": "support",
+      "stance": "Supportive",
+      "interest": "Regime survival (Shia majority)"
+    },
+    {
+      "name": "Kuwait",
+      "position": "neutral",
+      "stance": "Cautious, caught between",
+      "interest": "Stability, neutrality"
+    },
+    {
+      "name": "Qatar",
+      "position": "neutral",
+      "stance": "Mediator, maintains Iran ties",
+      "interest": "Regional mediation role"
+    },
+    {
+      "name": "Oman",
+      "position": "neutral",
+      "stance": "Neutral mediator",
+      "interest": "Stability, mediation"
+    },
+    {
+      "name": "Turkey",
+      "position": "oppose",
+      "stance": "Publicly opposed, red lines on Kurds",
+      "interest": "No Kurdish state, regional influence"
+    },
+    {
+      "name": "Iraq",
+      "position": "neutral",
+      "stance": "Divided (government vs. PMF)",
+      "interest": "Sovereignty, avoiding conflict"
+    },
+    {
+      "name": "Syria",
+      "position": "oppose",
+      "stance": "Hostile to US/Israel",
+      "interest": "Regime survival (Assad)"
+    },
+    {
+      "name": "Lebanon",
+      "position": "neutral",
+      "stance": "Divided (Hezbollah vs. government)",
+      "interest": "Avoiding destruction"
+    },
+    {
+      "name": "Jordan",
+      "position": "support",
+      "stance": "Silent, likely supportive",
+      "interest": "Stability, refugee management"
+    },
+    {
+      "name": "Egypt",
+      "position": "neutral",
+      "stance": "Cautious, not supportive publicly",
+      "interest": "Stability, Suez revenue"
+    },
+    {
+      "name": "Pakistan",
+      "position": "neutral",
+      "stance": "Concerned, complex",
+      "interest": "Baluchi separatism risk"
+    },
+    {
+      "name": "Israel",
+      "position": "support",
+      "stance": "Primary partner",
+      "interest": "Existential threat elimination"
+    }
+  ],
+  "extraRegionalActors": [
+    {
+      "name": "United States",
+      "position": "support",
+      "stance": "Primary striker",
+      "interest": "Regime change, nuclear elimination"
+    },
+    {
+      "name": "Russia",
+      "position": "oppose",
+      "stance": "Critical, limited response",
+      "interest": "Arms sales, anti-US positioning"
+    },
+    {
+      "name": "China",
+      "position": "oppose",
+      "stance": "Critical but pragmatic",
+      "interest": "Oil imports, Belt and Road"
+    },
+    {
+      "name": "European Union",
+      "position": "neutral",
+      "stance": "Divided, concerned",
+      "interest": "Nuclear non-proliferation, stability"
+    },
+    {
+      "name": "United Kingdom",
+      "position": "support",
+      "stance": "Likely supportive",
+      "interest": "Transatlantic alliance"
+    },
+    {
+      "name": "India",
+      "position": "neutral",
+      "stance": "Concerned, neutral",
+      "interest": "Oil imports, Chabahar Port"
+    }
+  ],
+  "watchItems": [
+    {
+      "item": "Khamenei Video Appearance",
+      "significance": "Critical",
+      "ifHappens": "Would devastate US/Israel credibility",
+      "probability": "Unknown",
+      "timeframe": "Next 24 hours"
+    },
+    {
+      "item": "Assembly of Experts Meeting",
+      "significance": "High",
+      "ifHappens": "Would indicate succession process",
+      "probability": "Likely if Khamenei dead",
+      "timeframe": "Next 48 hours"
+    },
+    {
+      "item": "Internet Restoration in Iran",
+      "significance": "High",
+      "ifHappens": "Would enable proxy coordination",
+      "probability": "Unknown",
+      "timeframe": "Unknown"
+    },
+    {
+      "item": "Congressional War Powers Vote",
+      "significance": "High",
+      "ifHappens": "Could constrain operation",
+      "probability": "95%",
+      "timeframe": "Next 72 hours"
+    },
+    {
+      "item": "Hezbollah Major Offensive",
+      "significance": "Critical",
+      "ifHappens": "Regional war escalation",
+      "probability": "75% (when internet returns)",
+      "timeframe": "24-48 hours after internet"
+    }
+  ],
+  "predictions": [
+    {
+      "timeframe": "24 hours",
+      "prediction": "Congressional resolution introduced",
+      "confidence": 0.95
+    },
+    {
+      "timeframe": "24 hours",
+      "prediction": "No Khamenei video appearance",
+      "confidence": 0.70
+    },
+    {
+      "timeframe": "24 hours",
+      "prediction": "Internet remains partially down",
+      "confidence": 0.80
+    },
+    {
+      "timeframe": "72 hours",
+      "prediction": "War powers vote in Congress",
+      "confidence": 0.85
+    },
+    {
+      "timeframe": "72 hours",
+      "prediction": "Khamenei status clarified",
+      "confidence": 0.80
+    },
+    {
+      "timeframe": "7 days",
+      "prediction": "Major proxy response executed",
+      "confidence": 0.80
+    },
+    {
+      "timeframe": "7 days",
+      "prediction": "No wider regional war",
+      "confidence": 0.80
+    }
+  ]
+}
